@@ -11,6 +11,7 @@ class AddScreen extends StatelessWidget {
     String descriptionText = '';
     TextEditingController titleTask = TextEditingController();
     TextEditingController descriptionTask = TextEditingController();
+    TextEditingController dateTask = TextEditingController();
 
     return Scaffold(
         appBar: AppBar(
@@ -50,6 +51,8 @@ class AddScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(height: 20,),
+
                   SizedBox(height: 70,),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -59,12 +62,12 @@ class AddScreen extends StatelessWidget {
                     ),
                     child: Text('Add Task'),
                     onPressed: (){
-                      titleText = titleText.toString();
-                      descriptionText = descriptionTask.toString();
+                      titleText = titleTask.text;
+                      descriptionText = descriptionTask.text;
 
-                  Provider.of<TaskOperation>(context, listen: false).addNewTask(titleText, descriptionText);
+                  Provider.of<TaskOperation>(context, listen: false).addNewTask(titleText, descriptionText, DateTime.now());
                   Navigator.pop(context);
-                  },
+                   },
                   ),
                 ],
               ),
